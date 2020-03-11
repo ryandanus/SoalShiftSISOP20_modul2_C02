@@ -12,6 +12,7 @@
 #include <ctype.h>
 #include <wait.h>
 
+//deklarasi main harus menggunakan argv untuk baca input detik,menit,waktu,path
 int main(int argc, char *argv[]) {
 
   pid_t pid, sid;
