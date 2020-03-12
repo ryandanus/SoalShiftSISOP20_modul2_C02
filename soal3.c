@@ -24,7 +24,6 @@ int main(){
     }
     sleep(1);
     if(pid2 = fork() == 0){
-      // sleep(5);
       char *br[] = {"mkdir","/home/feinard/modul2/sedap",NULL};
       execv("/bin/mkdir",br);
     }
@@ -76,32 +75,34 @@ int main(){
   struct dirent *mkfile;
   DIR *files = opendir("/home/feinard/modul2/indomie");
 
-  // if(files == NULL){
-  //   printf("directory error\n");
-  //   return 0;
-  // }
+  if(files == NULL){
+    printf("directory error\n");
+    return 0;
+  }
 
 
   while ((mkfile = readdir(files)) != NULL) {
-    char locpath[80];
-    strcpy(locpath,"/home/feinard/modul2/indomie/");
-    strcat(locpath,mkfile->d_name);
 
-    if(strcmp(der->d_name,".")==0 || strcmp(der->d_name,"..")==0){
-      printf("back and front\n");
+    if(strcmp(mkfile->d_name,".")==0 || strcmp(mkfile->d_name,"..")==0){
+      continue;
     }
-//
-    if(pid1 = fork() == 0){
-      chdir(locpath);
-      printf("A\n");
-      char *temp[]={"touch","coba1.txt",NULL};
-      execv("/bin/touch",temp);
-    }
-    if(pid1 = fork() == 0){
-      chdir(locpath);
-      char *temp[]={"touch","coba2.txt",NULL};
-      execv("/bin/touch",temp);
+    else{
+      char locpath[80];
+      strcpy(locpath,"/home/feinard/modul2/indomie/");
+      strcat(locpath,mkfile->d_name);
+
+      if(pid1 = fork() == 0){
+        chdir(locpath);
+        char *temp[]={"touch","coba1.txt",NULL};
+        execv("/bin/touch",temp);
+      }
+      sleep(3);
+      if(pid1 = fork() == 0){
+        chdir(locpath);
+        char *temp[]={"touch","coba2.txt",NULL};
+        execv("/bin/touch",temp);
+      }
     }
   }
-  // closedir(files);
+  closedir(files);
 }
