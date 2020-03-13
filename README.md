@@ -334,8 +334,138 @@ Catatan :
 ### Jawaban :
 Menggunakan program [soal3.c](soal3/soal3.c). Isi dari program tersebut adalah
 ```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <time.h>
+#include <wait.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <syslog.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <dirent.h>
+
+int main(){
+  pid_t pid1,pid2;
+
+  pid1 = fork();
+  // pid2 = fork();
+
+  if(pid1 == 0){
+    if(pid2 = fork() == 0){
+      char *ar[] = {"mkdir","/home/danu/modul2/indomie",NULL};
+      execv("/bin/mkdir",ar);
+    }
+    sleep(5);
+    if(pid2 = fork() == 0){
+      char *br[] = {"mkdir","/home/danu/modul2/sedap",NULL};
+      execv("/bin/mkdir",br);
+    }
+    if(pid2 = fork() == 0){
+      chdir("/home/danu/modul2");
+      char *exc[] = {"unzip","jpg.zip",NULL};
+      execv("/usr/bin/unzip",exc);
+    }
+    
+  }
+  
+  // sleep(5);
+
+  struct dirent *der;
+  DIR *dir = opendir("/home/danu/modul2/jpg");
+  if(dir == NULL){
+    return 0;
+  }
+
+
+  while ((der = readdir(dir)) != NULL) {
+    char filepath[80];
+    struct stat typestat;
+    if(strcmp(der->d_name,".")==0 || strcmp(der->d_name,"..")==0){
+      continue;
+    }
+    else{
+      strcpy(filepath,"/home/danu/modul2/jpg/");
+      strcat(filepath,der->d_name);
+
+      if(stat(filepath,&typestat) == 0){
+        if( typestat.st_mode & S_IFDIR ){
+          if(pid1 = fork() == 0){
+            char *movDir[]={"mv",filepath,"/home/danu/modul2/indomie",NULL};
+            execv("/bin/mv",movDir);
+          }
+       }
+       else if( typestat.st_mode & S_IFREG ){
+         if(pid1 = fork() == 0){
+           char *movReg[]={"mv",filepath,"/home/danu/modul2/sedap",NULL};
+           execv("/bin/mv",movReg);
+         }
+       }
+      }
+    }
+  }
+
+  closedir(dir);
+
+  struct dirent *mkfile;
+  DIR *files = opendir("/home/danu/modul2/indomie");
+
+  if(files == NULL){
+    printf("directory error\n");
+    return 0;
+  }
+
+
+  while ((mkfile = readdir(files)) != NULL) {
+
+    if(strcmp(mkfile->d_name,".")==0 || strcmp(mkfile->d_name,"..")==0){
+      continue;
+    }
+    else{
+      char locpath[80];
+      strcpy(locpath,"/home/danu/modul2/indomie/");
+      strcat(locpath,mkfile->d_name);
+
+      if(pid1 = fork() == 0){
+        chdir(locpath);
+        char *temp[]={"touch","coba1.txt",NULL};
+        execv("/bin/touch",temp);
+      }
+      sleep(3);
+      if(pid1 = fork() == 0){
+        chdir(locpath);
+        char *temp[]={"touch","coba2.txt",NULL};
+        execv("/bin/touch",temp);
+      }
+    }
+  }
+  closedir(files);
+}
 ```
-Program dijalankan
 
+Untuk menjalankan perintah pada 3a digunakanlah fork dan exec untuk membuat direktori untuk memberikan jeda selama 5 detik sebelum membuat direktori sedaap digunakanlah sleep(5) 
 
+```
+char *ar[] = {"mkdir","/home/danu/modul2/indomie",NULL};
+execv("/bin/mkdir",ar);
+
+sleep(5);
+
+char *br[] = {"mkdir","/home/danu/modul2/sedap",NULL};
+execv("/bin/mkdir",br);
+```
+
+untuk mengekstrak file yang berbentuk zip pada file tersebut yaitu jpg.zip, mengggunakan exec dimana file itu sebelumnya telah diletakkan pada direktori "/home/danu/modul2" 
+
+```
+chdir("/home/danu/modul2");
+char *exc[] = {"unzip","jpg.zip",NULL};
+execv("/usr/bin/unzip",exc);
+```
+    
+    
+    
 # Kendala
