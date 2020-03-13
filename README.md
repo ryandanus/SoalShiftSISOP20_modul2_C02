@@ -25,7 +25,7 @@ Program dengan argumen seperti contoh di atas akan menjalankan script test.sh se
 detik pada jam 07:34.
 
 ### Jawaban :
-Menggunakan program [soal1.c](soal1/soal1.c). Isi dari program tersebut adalah 
+
 ```
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -332,7 +332,7 @@ Catatan :
 - Direktori “.” dan “..” tidak termasuk
 
 ### Jawaban :
-Menggunakan program [soal3.c](soal3/soal3.c). Isi dari program tersebut adalah
+
 ```
 #include <stdio.h>
 #include <string.h>
