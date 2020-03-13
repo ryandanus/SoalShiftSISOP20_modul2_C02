@@ -46,8 +46,6 @@ int main(int argc, char *argv[]) {
 
   pid_t pid, sid;
 
-  printf("%s\n%s\n%s\n%s\n",argv[1],argv[2],argv[3],argv[4]);
-
   pid = fork();
 
   if (pid < 0) {
@@ -111,15 +109,14 @@ int main(int argc, char *argv[]) {
     printf("DATA PATH ERROR\n");
     exit(EXIT_FAILURE);
   }
-  //
-  // close(STDIN_FILENO);
-  // close(STDOUT_FILENO);
-  // close(STDERR_FILENO);
+  
+  close(STDIN_FILENO);
+  close(STDOUT_FILENO);
+  close(STDERR_FILENO);
 
 
   while (1) {
     pid_t run;
-    printf("Running\n");
 
     time_t rawtime;
     struct tm * timeinfo;
