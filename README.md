@@ -366,27 +366,27 @@ while (1) {
             while(wait(&stat) > 0);
             int temp=0;
             while(temp < 20){
-            temp++;
-            chdir(timefolder);
+              temp++;
+              chdir(timefolder);
 
-            int x = ((int)time(NULL)%1000)+100;
+              int x = ((int)time(NULL)%1000)+100;
 
-            time(&rawtime);
-            timeinfo = localtime ( &rawtime );
+              time(&rawtime);
+              timeinfo = localtime ( &rawtime );
 
-            char tempdown[80];
-            char snum[10];
+              char tempdown[80];
+              char snum[10];
 
-            sprintf(tempdown,"https://picsum.photos/%d",x);
+              sprintf(tempdown,"https://picsum.photos/%d",x);
 
-            char filename[20];
-            strftime(filename,20,"%Y-%m-%d_%T",timeinfo);
+              char filename[20];
+              strftime(filename,20,"%Y-%m-%d_%T",timeinfo);
 
-            char *wget[]={"wget",tempdown,"-O",filename,NULL};
-            if(run = fork() == 0){
-                execv("/usr/bin/wget",wget);
-            }
-            sleep(5);
+              char *wget[]={"wget",tempdown,"-O",filename,NULL};
+              if(run = fork() == 0){
+                  execv("/usr/bin/wget",wget);
+              }
+              sleep(5);
             }
             if(run = fork() == 0){
                 char zipname[100];
