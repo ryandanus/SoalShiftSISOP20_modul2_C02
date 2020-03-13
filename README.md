@@ -457,7 +457,6 @@ int main(){
   pid_t pid1,pid2;
 
   pid1 = fork();
-  // pid2 = fork();
 
   if(pid1 == 0){
     if(pid2 = fork() == 0){
@@ -477,7 +476,7 @@ int main(){
     
   }
   
-  // sleep(5);
+  sleep(2);
 
   struct dirent *der;
   DIR *dir = opendir("/home/danu/modul2/jpg");
