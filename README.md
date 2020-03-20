@@ -252,6 +252,11 @@ int main(int argc, char *argv[]) {
 ```
 Program dijalankan 
 
+Penjelasan: 
+  Untuk memasukan argumen ddidalam data digunakan fungsi main. fungsi main ini sendiri adalah untuk memasukan data kedalam argv array sesuai keinginan user.
+  Digunakan perbandingan character bintang(\*) apakah ada kelanjutan setelah bintang. kemudia ada perbandingan untuk perbandingan apakah melebihi jam,menit, dan detik. Jika ada error maka akan keluar data input error dan program berhenti. Setelah itu ada pengecekan data path. Untuk pengecekan data path digunakan stat, jika error maka dikeluarkan perintah data path error dan program berhenti.
+  Setelah itu program akan berjalan dengan pengecekan jam, menit, dan detik dengan perbandingan * . Misal jika jam, menit, dan detik adalah bintang maka dilakukan looping setiap detik dengan sleep(1) dan dilakukan forking untuk melakukan execvp. Jika ada argumen * misalkan jika jam adalah bintang ( * ), maka dilakukan pengecekan setiap detik apakah bisa dilakukan forking pada menit dan detik yang ada.
+
 ## Nomor 2
 ### Soal :
 2. Shisoppu mantappu! itulah yang selalu dikatakan Kiwa setiap hari karena sekarang dia
