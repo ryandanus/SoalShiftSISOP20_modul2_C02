@@ -442,7 +442,16 @@ int main(int argc, char *argv[]) {
 ```
 penjelasan:
 
-Pertama digunakan daemon sesuai modul, kemudian kita membuat 
+Pertama digunakan daemon sesuai modul, kemudian kita mengambil waktu yang ada sekarang dengan fungsi time.h dengan struct tm dan menggunakan localtime. Jika telah mendapat waktunya, kita masukan kedalam string path lokasi foldernya. Kemudian menggunakan strftime dilakukan penyimpanan waktu kedalam string baru dan dimasukan kedalam string path. Kemudian dilakukan fork dan lakukan execv /bin/mkdir. Setelah itu dilakukan sleep selama 30 detik
+
+Untuk no b pertama harus dilakukan looping sebanyak 20 kali. Pertama dilakukan pengambilan total detik sistem dengan fungsi 
+```
+((int)time(NULL)%1000)+100;
+```
+Setelah itu dilakukan penimpanan string download link dengan downloadlink yang ditambah dengan pengambilan total detik yang telah dimodulo dan ditambah 100. Setelah itu dilakukan penyimpanan nama file waktu dengan menggunakan strftime yang dimasukan kedalam string baru. Setelah itu dilakukan fork dan dilakukan execv /usr/bin/wget dengan dowload link dan filename yang ada.Terakhir dilakukan sleep selama 5 detik sebelum program kembali ke atas untuk looping while.
+
+
+
 
 ## Nomor 3
 ### Soal :
