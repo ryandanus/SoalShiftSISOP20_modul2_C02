@@ -614,7 +614,9 @@ chdir("/home/danu/modul2");
 char *exc[] = {"unzip","jpg.zip",NULL};
 execv("/usr/bin/unzip",exc);
 ```
-Setelah itu kita lakukan pengecekan directory dengan dirent.h. Didalam dirent kita dapat melakukan pengecekan apakah directory itu ada dedngan opendir path dan pengecekan apakah null atau tidak. Setelah itu dilakukan pembacaan setiap file/directory yang ada dengan looping.
+Setelah itu kita lakukan pengecekan directory dengan dirent.h. Didalam dirent kita dapat melakukan pengecekan apakah directory itu ada dedngan opendir path dan pengecekan apakah null atau tidak. Setelah itu dilakukan pembacaan setiap file/directory yang ada dengan looping. Setiap kita membaca file/directory yang ada, ditemukan . dan .. yang kita harus antisipasi dengan penggunakan if strcmp. Kemudian kita simpan path yang ada didalam string dengan nama path jpg dan nama filenya dengan d_name. Setelah itu dilakukan pengecekan apakah path tersebut adalah directory atau hanya file saja. Untuk itu digunakan typestat(struct stat).st_mode dan dengan S_IFDIR atao S_IFREG. Jika directory maka dilakukan fork dan lakukan pemindahan kedalam indomie dengan menjalankan execv. Jika regular file maka dilakukan fork dan dialkukan pemindahan kedalam sedap dengan menjalankan execv. Stelah itu dilakukan closedirectory.
+
+Untuk 
     
     
 # Kendala
