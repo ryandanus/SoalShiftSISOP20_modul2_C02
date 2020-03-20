@@ -15,6 +15,7 @@
 int main(){
   pid_t pid1,pid2;
 
+  int status;
   pid1 = fork();
 
   if(pid1 == 0){
@@ -22,7 +23,7 @@ int main(){
       char *ar[] = {"mkdir","/home/feinard/modul2/indomie",NULL};
       execv("/bin/mkdir",ar);
     }
-    sleep(1);
+    sleep(5);
     if(pid2 = fork() == 0){
       char *br[] = {"mkdir","/home/feinard/modul2/sedap",NULL};
       execv("/bin/mkdir",br);
@@ -34,7 +35,7 @@ int main(){
     }
   }
 
-  sleep(2);
+  while(wait(&status) > 0);
 
   struct dirent *der;
   DIR *dir = opendir("/home/feinard/modul2/jpg");
