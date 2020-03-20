@@ -321,7 +321,7 @@ tertentu
 
 void killer(char id[]) {
   FILE *makingBashScript;
-  makingBashScript = fopen("killer.sh","w");
+  makingBashScript = fopen("killer.sh","w+");
   int stat;
   if(strcmp(id,"-a") == 0){
     fprintf(makingBashScript, "kill -9 %d",getpid());
@@ -450,7 +450,7 @@ Untuk no b pertama harus dilakukan looping sebanyak 20 kali. Pertama dilakukan p
 ```
 Setelah itu dilakukan penimpanan string download link dengan downloadlink yang ditambah dengan pengambilan total detik yang telah dimodulo dan ditambah 100. Setelah itu dilakukan penyimpanan nama file waktu dengan menggunakan strftime yang dimasukan kedalam string baru. Setelah itu dilakukan fork dan dilakukan execv /usr/bin/wget dengan dowload link dan filename yang ada.Terakhir dilakukan sleep selama 5 detik sebelum program kembali ke atas untuk looping while.
 
-
+Untuk no 2d dan 2e digunakan pemanggilan fungsi killer. Untuk mode killer ini dapat dipanggil dengan argv. Didalam fungsi killer ini terdapat pembuatan file sh dengan perbandingan mode  "-a" atau "-b". Jika "-a" maka digunakan kill -9 dengan menangkap pid dengan getpid(). Jika "-b" maka digunakan kill dan menangkap pid dengan getpid(). Kemudian kita ubah .sh ini dengan fork dan gunakan execv /bin/chmod dengan chmod u+x. Kemudian yang terakhir kita lakukan fork untuk mengganti nama dari .sh menjadi killer saja.
 
 
 ## Nomor 3
@@ -614,7 +614,7 @@ chdir("/home/danu/modul2");
 char *exc[] = {"unzip","jpg.zip",NULL};
 execv("/usr/bin/unzip",exc);
 ```
-    
+Setelah itu kita lakukan pengecekan directory dengan dirent.h. Didalam dirent kita dapat melakukan pengecekan apakah directory itu ada dedngan opendir path dan pengecekan apakah null atau tidak. Setelah itu dilakukan pembacaan setiap file/directory yang ada dengan looping.
     
     
 # Kendala
