@@ -259,6 +259,14 @@ Penjelasan:
   Digunakan perbandingan character bintang(\*) apakah ada kelanjutan setelah bintang. kemudia ada perbandingan untuk perbandingan apakah melebihi jam,menit, dan detik. Jika ada error maka akan keluar data input error dan program berhenti. Setelah itu ada pengecekan data path. Untuk pengecekan data path digunakan stat, jika error maka dikeluarkan perintah data path error dan program berhenti.
   
   Setelah itu program akan berjalan dengan pengecekan jam, menit, dan detik dengan perbandingan * . Misal jika jam, menit, dan detik adalah bintang maka dilakukan looping setiap detik dengan sleep(1) dan dilakukan forking untuk melakukan execvp. Jika ada argumen * misalkan jika jam adalah bintang ( * ), maka dilakukan pengecekan setiap detik apakah bisa dilakukan forking pada menit dan detik yang ada.
+  
+saat program dijalankan dengan menjalankan scriptbash "soal3_a.sh" yang berisi  
+![isibash1](https://user-images.githubusercontent.com/59832754/77226719-05db6500-6bad-11ea-9c9a-bc199e1532ab.jpg)
+
+hasil
+script bash berhasil dijalankan dengan mendownload gambar dan memunculkan wget.log
+![1](https://user-images.githubusercontent.com/59832754/77226720-0673fb80-6bad-11ea-842a-7cbb7d906748.jpg)
+
 
 ## Nomor 2
 ### Soal :
