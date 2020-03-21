@@ -650,8 +650,9 @@ lalu digunakan char locpath[80]; untuk menyimpan path indomie yang nantinya dida
     char *temp[]={"touch","coba1.txt",NULL};
     execv("/bin/touch",temp);
   } 
-```    
-    seletelah itu diberi fungsi sleep(3) untuk memberi jeda waktu 3 detik untuk membuat coba2.txt yang juga dijalankan menggunakan exec "touch" melalui fork yang dijalankan
+```
+
+setelah itu diberi fungsi sleep(3) untuk memberi jeda waktu 3 detik untuk membuat coba2.txt yang juga dijalankan menggunakan exec "touch" melalui fork yang dijalankan
     
   ```
     sleep(3);
