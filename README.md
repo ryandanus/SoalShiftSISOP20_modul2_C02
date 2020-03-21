@@ -460,6 +460,19 @@ Setelah itu dilakukan penimpanan string download link dengan downloadlink yang d
 
 Untuk no 2d dan 2e digunakan pemanggilan fungsi killer. Untuk mode killer ini dapat dipanggil dengan argv. Didalam fungsi killer ini terdapat pembuatan file sh dengan perbandingan mode  "-a" atau "-b". Jika "-a" maka digunakan kill -9 dengan menangkap pid dengan getpid(). Jika "-b" maka digunakan kill dan menangkap pid dengan getpid(). Kemudian kita ubah .sh ini dengan fork dan gunakan execv /bin/chmod dengan chmod u+x. Kemudian yang terakhir kita lakukan fork untuk mengganti nama dari .sh menjadi killer saja.
 
+hasil saat program dijalankan menggunakan argumen -a
+program berhasil berjalan dengan membuat folder setiap 30 detik yang didalamnya mendownload gambar dengan piksel yang ditentukan setiap 5 detik dan membuat "killer"
+![2-a](https://user-images.githubusercontent.com/59832754/77226971-cdd52180-6bae-11ea-81a1-50e3e8705c6f.jpg)
+![2-2a](https://user-images.githubusercontent.com/59832754/77226973-cf064e80-6bae-11ea-99a7-4d76d66caa8e.jpg)
+
+jika killer dijalankan maka akan membunuh semua proses dan berhenti saat itu juga
+![killa](https://user-images.githubusercontent.com/59832754/77226974-d0377b80-6bae-11ea-9be1-857c8236a196.jpg)
+
+hasil saat program dijalankan menggunakan argumen -b
+sama dengan -a namun saat killer dijalankan killer akan membunuh sehingga folder baru tidak akan dibuat proses berhenti di folder terakhir yang dibuat namun akan menyelesaikan prosesnya hingga zip file dan menghapus dirinya
+![killb](https://user-images.githubusercontent.com/59832754/77226975-d2013f00-6bae-11ea-93d7-d2ddd922225c.jpg)
+
+
 
 ## Nomor 3
 ### Soal :
