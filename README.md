@@ -606,6 +606,14 @@ sleep(5);
 char *br[] = {"mkdir","/home/danu/modul2/sedap",NULL};
 execv("/bin/mkdir",br);
 ```
+hasil
+
+![3a](https://user-images.githubusercontent.com/59832754/77226524-a761b700-6bab-11ea-8201-ecefa3b60c83.jpg)
+
+setelah 5 detik 
+
+![3-2a](https://user-images.githubusercontent.com/59832754/77226537-c2342b80-6bab-11ea-90f6-57c6cb14c569.jpg)
+
 
 untuk mengekstrak file yang berbentuk zip pada file tersebut yaitu jpg.zip, mengggunakan exec dimana file itu sebelumnya telah diletakkan pada direktori "/home/danu/modul2" 
 
@@ -614,6 +622,10 @@ chdir("/home/danu/modul2");
 char *exc[] = {"unzip","jpg.zip",NULL};
 execv("/usr/bin/unzip",exc);
 ```
+
+hasil 
+![3b](https://user-images.githubusercontent.com/59832754/77226546-dc6e0980-6bab-11ea-9f09-37388492358c.jpg)
+
 Setelah itu kita lakukan pengecekan directory dengan dirent.h. Didalam dirent kita dapat melakukan pengecekan apakah directory itu ada dedngan opendir path dan pengecekan apakah null atau tidak. Setelah itu dilakukan pembacaan setiap file/directory yang ada dengan looping. 
 
 Setiap kita membaca file/directory yang ada, ditemukan (.) dan (..) yang kita harus antisipasi dengan penggunakan if strcmp. 
@@ -623,7 +635,14 @@ Setiap kita membaca file/directory yang ada, ditemukan (.) dan (..) yang kita ha
     }
  ```   
 Kemudian kita simpan path yang ada didalam string dengan nama path jpg dan nama filenya dengan d_name. Setelah itu dilakukan pengecekan apakah path tersebut adalah directory atau hanya file saja. Untuk itu digunakan typestat(struct stat).st_mode dan dengan S_IFDIR atao S_IFREG. Jika directory maka dilakukan fork dan lakukan pemindahan kedalam indomie dengan menjalankan execv. Jika regular file maka dilakukan fork dan dialkukan pemindahan kedalam sedap dengan menjalankan execv. Setelah itu dilakukan closedirectory.
- ```   
+
+hasil 
+di folder indomie
+![3-2c](https://user-images.githubusercontent.com/59832754/77226562-f7407e00-6bab-11ea-8c8e-1cf41bf58896.jpg)
+di folder sedaap
+![3c](https://user-images.githubusercontent.com/59832754/77226565-f871ab00-6bab-11ea-9d3f-125f6caa6394.jpg)
+
+```   
       if(stat(filepath,&typestat) == 0){
         if( typestat.st_mode & S_IFDIR ){
           if(pid1 = fork() == 0){
@@ -666,5 +685,8 @@ setelah itu diberi fungsi sleep(3) untuk memberi jeda waktu 3 detik untuk membua
   closedir(files);
   ```  
    jika sudah dilakukan closedirectory.
+   
+hasil 
+![3d](https://user-images.githubusercontent.com/59832754/77226593-20f9a500-6bac-11ea-9f30-d0736c1291d2.jpg)
     
 # Kendala
