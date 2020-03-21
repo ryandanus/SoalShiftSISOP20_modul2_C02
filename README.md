@@ -1,6 +1,5 @@
 # SoalShiftSISOP20_modul2_C02
 
-# SoalShift_modul2_A13
   - [Nomor 1](#nomor-1)
   - [Nomor 2](#nomor-2)
   - [Nomor 3](#nomor-3)
