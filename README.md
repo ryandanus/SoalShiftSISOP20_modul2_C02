@@ -614,9 +614,56 @@ chdir("/home/danu/modul2");
 char *exc[] = {"unzip","jpg.zip",NULL};
 execv("/usr/bin/unzip",exc);
 ```
-Setelah itu kita lakukan pengecekan directory dengan dirent.h. Didalam dirent kita dapat melakukan pengecekan apakah directory itu ada dedngan opendir path dan pengecekan apakah null atau tidak. Setelah itu dilakukan pembacaan setiap file/directory yang ada dengan looping. Setiap kita membaca file/directory yang ada, ditemukan . dan .. yang kita harus antisipasi dengan penggunakan if strcmp. Kemudian kita simpan path yang ada didalam string dengan nama path jpg dan nama filenya dengan d_name. Setelah itu dilakukan pengecekan apakah path tersebut adalah directory atau hanya file saja. Untuk itu digunakan typestat(struct stat).st_mode dan dengan S_IFDIR atao S_IFREG. Jika directory maka dilakukan fork dan lakukan pemindahan kedalam indomie dengan menjalankan execv. Jika regular file maka dilakukan fork dan dialkukan pemindahan kedalam sedap dengan menjalankan execv. Stelah itu dilakukan closedirectory.
+Setelah itu kita lakukan pengecekan directory dengan dirent.h. Didalam dirent kita dapat melakukan pengecekan apakah directory itu ada dedngan opendir path dan pengecekan apakah null atau tidak. Setelah itu dilakukan pembacaan setiap file/directory yang ada dengan looping. 
 
-Untuk 
+Setiap kita membaca file/directory yang ada, ditemukan (.) dan (..) yang kita harus antisipasi dengan penggunakan if strcmp. 
+ ```
+ if(strcmp(mkfile->d_name,".")==0 || strcmp(mkfile->d_name,"..")==0){
+      continue;
+    }
+ ```   
+Kemudian kita simpan path yang ada didalam string dengan nama path jpg dan nama filenya dengan d_name. Setelah itu dilakukan pengecekan apakah path tersebut adalah directory atau hanya file saja. Untuk itu digunakan typestat(struct stat).st_mode dan dengan S_IFDIR atao S_IFREG. Jika directory maka dilakukan fork dan lakukan pemindahan kedalam indomie dengan menjalankan execv. Jika regular file maka dilakukan fork dan dialkukan pemindahan kedalam sedap dengan menjalankan execv. Setelah itu dilakukan closedirectory.
+ ```   
+      if(stat(filepath,&typestat) == 0){
+        if( typestat.st_mode & S_IFDIR ){
+          if(pid1 = fork() == 0){
+            char *movDir[]={"mv",filepath,"/home/danu/modul2/indomie",NULL};
+            execv("/bin/mv",movDir);
+          }
+       }
+       else if( typestat.st_mode & S_IFREG ){
+         if(pid1 = fork() == 0){
+           char *movReg[]={"mv",filepath,"/home/danu/modul2/sedap",NULL};
+           execv("/bin/mv",movReg);
+         }
+       }
+ ```   
+Untuk membuat dua file kosong di setiap direktori yang dipindahkan di .../indomie dilakukan pengecekan directory dengan dirent.h. idcek apakah null atau tidak .dilakukan langkah yg sama saat ditemukan (.) dan (..) yang kita harus antisipasi dengan penggunakan if strcmp. 
+ 
+lalu digunakan char locpath[80]; untuk menyimpan path indomie yang nantinya didalamnya akan dibuat coba1.txt dengan menggunakan exec "touch" melalui fork yang dijalankan
+ ```
+  strcpy(locpath,"/home/danu/modul2/indomie/");
+  strcat(locpath,mkfile->d_name);
+
+  if(pid1 = fork() == 0){
+    chdir(locpath);
+    char *temp[]={"touch","coba1.txt",NULL};
+    execv("/bin/touch",temp);
+  } 
+```    
+    seletelah itu diberi fungsi sleep(3) untuk memberi jeda waktu 3 detik untuk membuat coba2.txt yang juga dijalankan menggunakan exec "touch" melalui fork yang dijalankan
     
+  ```
+    sleep(3);
+      if(pid1 = fork() == 0){
+        chdir(locpath);
+        char *temp[]={"touch","coba2.txt",NULL};
+        execv("/bin/touch",temp);
+      }
+    }
+  }
+  closedir(files);
+  ```  
+   jika sudah dilakukan closedirectory.
     
 # Kendala
